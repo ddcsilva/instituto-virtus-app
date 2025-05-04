@@ -1,0 +1,16 @@
+# .NET
+backend/**/bin/
+backend/**/obj/
+backend/**/appsettings.Development.json
+*.user
+
+# Angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Logs e temporários
+*.log
+*.tmp
+.DS_Store
+.env
