@@ -11,7 +11,6 @@ import { MatListModule } from '@angular/material/list';
 import { UsuarioComponent } from '../components/usuario.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { VirtusLogoComponent } from '../../shared/ui/virtus-logo.component';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +24,6 @@ import { VirtusLogoComponent } from '../../shared/ui/virtus-logo.component';
     MatSidenavModule,
     MatListModule,
     UsuarioComponent,
-    VirtusLogoComponent,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
