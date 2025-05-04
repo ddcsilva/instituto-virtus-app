@@ -60,6 +60,12 @@
     border-radius: var(--borda-raio-md);
     transition: transform var(--transicao-padrao),
       box-shadow var(--transicao-padrao);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 220px;
+    box-sizing: border-box;
 
     &:hover {
       transform: translateY(-4px);
@@ -84,12 +90,20 @@
     }
 
     p {
-      margin-bottom: var(--espaco-4);
+      margin-bottom: var(--espaco-6);
       color: var(--cor-texto-secundario);
+      text-align: center;
+      flex: 1 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn {
-      display: inline-block;
+      display: block;
+      margin: 0 auto;
+      min-width: 140px;
+      margin-top: var(--espaco-4);
     }
   }
 }
