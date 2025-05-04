@@ -1,16 +1,175 @@
-# .NET
+# =========================================
+# Arquivos de ambiente e configuração
+# =========================================
+.env
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# =========================================
+# .NET - Arquivos de build e compilação
+# =========================================
 backend/**/bin/
 backend/**/obj/
 backend/**/appsettings.Development.json
-*.user
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
 
-# Angular
+# =========================================
+# .NET - Arquivos de projeto e dependências
+# =========================================
+project.lock.json
+project.fragment.lock.json
+artifacts/
+.tye/
+ScaffoldingReadMe.txt
+StyleCopReport.xml
+
+# =========================================
+# .NET - Arquivos de teste e cobertura
+# =========================================
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+[Dd]ebugPS/
+[Rr]eleasePS/
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
+.axoCover/*
+!.axoCover/settings.json
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# =========================================
+# .NET - Arquivos de IDE e ferramentas
+# =========================================
+.vs/
+Generated\ Files/
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+_Chutzpah*
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.e2e
+$tf/
+*.gpState
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+_TeamCity*
+*.dotCover
+*.mm.*
+AutoTest.Net/
+
+# =========================================
+# .NET - Arquivos de publicação
+# =========================================
+publish/
+*.[Pp]ublish.xml
+*.azurePubxml
+*.pubxml
+*.publishproj
+PublishScripts/
+
+# =========================================
+# Angular - Arquivos de build e dependências
+# =========================================
 frontend/node_modules/
 frontend/dist/
 frontend/.angular/
+frontend/tmp/
+frontend/out-tsc/
+frontend/bazel-out/
+frontend/npm-debug.log
+frontend/yarn-error.log
+frontend/.angular/cache
+frontend/sass-cache/
+frontend/connect.lock
+frontend/coverage/
+frontend/libpeerconnection.log
+frontend/testem.log
+frontend/typings/
 
-# Logs e temporários
+# =========================================
+# IDEs e editores
+# =========================================
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# =========================================
+# Sistema operacional e logs
+# =========================================
+.DS_Store
+Thumbs.db
 *.log
 *.tmp
-.DS_Store
-.env
+mono_crash.*
