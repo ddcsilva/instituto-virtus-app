@@ -15,13 +15,16 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private auth = inject(Auth);
   private router = inject(Router);
-
   private usuarioSubject = new BehaviorSubject<User | null>(null);
+  private carregandoSubject = new BehaviorSubject<boolean>(true);
+
   public usuario$ = this.usuarioSubject.asObservable();
+  public carregando$ = this.carregandoSubject.asObservable();
 
   constructor() {
     onAuthStateChanged(this.auth, async (user) => {
       this.usuarioSubject.next(user);
+      this.carregandoSubject.next(false);
 
       if (user) {
         const token = await user.getIdToken();
