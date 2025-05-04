@@ -1,3 +1,8 @@
+.header-container {
+  position: relative;
+  z-index: var(--z-flutuante);
+}
+
 .header-toolbar {
   display: flex;
   justify-content: space-between;
@@ -19,13 +24,14 @@
 
   /* Elementos decorativos inspirados no símbolo do instituto */
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(to right,
+    background: linear-gradient(
+      to right,
       var(--virtus-amarelo-escuro),
       var(--virtus-amarelo-escuro) 25%,
       transparent 25%,
@@ -42,15 +48,19 @@
   font-size: var(--texto-lg);
   font-weight: var(--fonte-peso-bold);
   letter-spacing: var(--tracking-apertado);
+  text-decoration: none;
+  color: var(--virtus-preto);
+  transition: all var(--transicao-rapida);
 
-  .logo-icon {
-    margin-right: var(--espaco-2);
-    height: 30px;
-    width: 30px;
+  &:hover {
+    transform: translateY(-1px);
   }
 
-  /* Efeito sutil de destaque no texto */
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  .logo-text {
+    margin-left: var(--espaco-2);
+    /* Efeito sutil de destaque no texto */
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  }
 }
 
 .spacer {
@@ -71,7 +81,8 @@
     transition: all var(--transicao-rapida);
     position: relative;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: rgba(0, 0, 0, 0.05);
     }
 
@@ -80,7 +91,7 @@
       font-weight: var(--fonte-peso-bold);
 
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -2px;
         left: var(--espaco-3);
@@ -92,8 +103,100 @@
   }
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
+/* Menu móvel e drawer lateral */
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--virtus-preto);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 280px;
+  height: 100vh;
+  background-color: var(--virtus-preto);
+  color: var(--virtus-branco);
+  z-index: var(--z-modal);
+  transition: transform var(--transicao-padrao);
+  overflow-y: auto;
+  box-shadow: var(--sombra-alta);
+
+  &.open {
+    transform: translateX(-280px);
+  }
+}
+
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: calc(var(--z-modal) - 1);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transicao-padrao),
+    visibility var(--transicao-padrao);
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espaco-4);
+  background-color: var(--virtus-amarelo-escuro);
+
+  button {
+    color: var(--virtus-branco);
+  }
+}
+
+.drawer-user {
+  padding: var(--espaco-4);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawer-nav {
+  padding: var(--espaco-2) 0;
+
+  a {
+    color: var(--virtus-branco);
+    transition: background-color var(--transicao-rapida);
+
+    &:hover,
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-left: 3px solid var(--virtus-amarelo);
+    }
+  }
+}
+
+.drawer-title {
+  color: var(--virtus-branco);
+  font-weight: var(--fonte-peso-bold);
+  font-size: var(--texto-lg);
+}
+
+/* Responsividade fluida */
+@media (max-width: 767px) {
   .header-toolbar {
     padding: 0 var(--espaco-2);
     height: 64px;
@@ -101,5 +204,29 @@
 
   .logo {
     font-size: var(--texto-base);
+  }
+
+  /* Logo responsivo - em telas muito pequenas, esconde o texto */
+  @media (max-width: 360px) {
+    .logo-text {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  }
+}
+
+/* Ajustes para acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-drawer,
+  .drawer-overlay,
+  .logo {
+    transition: none;
   }
 }

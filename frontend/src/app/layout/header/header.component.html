@@ -1,32 +1,71 @@
-<mat-toolbar class="header-toolbar">
-  <a routerLink="/" class="logo">
-    <svg
-      class="logo-icon"
-      width="30"
-      height="30"
-      viewBox="0 0 80 80"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+<div class="header-container">
+  <!-- Barra de navegação principal -->
+  <mat-toolbar class="header-toolbar">
+    <!-- Texto em vez de logo -->
+    <a routerLink="/" class="logo">
+      <span class="logo-text">Instituto Virtus</span>
+    </a>
+
+    <span class="spacer"></span>
+
+    <!-- Menu de navegação para desktop -->
+    <nav class="header-nav" *ngIf="!isMobileView">
+      <a
+        *ngFor="let item of navItems"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+      >
+        {{ item.label }}
+      </a>
+    </nav>
+
+    <span class="spacer"></span>
+
+    <!-- Componente do usuário -->
+    <app-usuario *ngIf="!isMobileView" />
+
+    <!-- Botão do menu hambúrguer para mobile -->
+    <button
+      *ngIf="isMobileView"
+      mat-icon-button
+      (click)="toggleDrawer()"
+      aria-label="Menu"
+      class="menu-button"
     >
-      <path d="M40 5L55 40L40 75L25 40L40 5Z" fill="#181818" />
-      <path
-        d="M40 5L75 40L40 75L5 40L40 5Z"
-        fill="#181818"
-        fill-opacity="0.7"
-      />
-    </svg>
-    Instituto Virtus
-  </a>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
 
-  <span class="spacer"></span>
+  <!-- Drawer lateral para mobile -->
+  <div class="mobile-drawer" [class.open]="isDrawerOpen && isMobileView">
+    <div class="drawer-header">
+      <span class="drawer-title">Instituto Virtus</span>
+      <button mat-icon-button (click)="toggleDrawer()" aria-label="Fechar menu">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
 
-  <nav class="header-nav">
-    <a routerLink="/dashboard" routerLinkActive="active">Início</a>
-    <a routerLink="/cursos" routerLinkActive="active">Cursos</a>
-    <a routerLink="/biblioteca" routerLinkActive="active">Biblioteca</a>
-  </nav>
+    <div class="drawer-user">
+      <app-usuario />
+    </div>
 
-  <span class="spacer"></span>
+    <mat-nav-list class="drawer-nav">
+      <a
+        mat-list-item
+        *ngFor="let item of navItems"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        (click)="toggleDrawer()"
+      >
+        {{ item.label }}
+      </a>
+    </mat-nav-list>
+  </div>
 
-  <app-usuario />
-</mat-toolbar>
+  <!-- Overlay para fechar o drawer ao clicar fora -->
+  <div
+    class="drawer-overlay"
+    [class.visible]="isDrawerOpen && isMobileView"
+    (click)="toggleDrawer()"
+  ></div>
+</div>

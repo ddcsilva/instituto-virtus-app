@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../../core/auth/auth.service';
 import { Router } from '@angular/router';
+import { VirtusLogoComponent } from '../../../shared/ui/virtus-logo.component';
 
 @Component({
   selector: 'app-login-page',
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    VirtusLogoComponent,
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',

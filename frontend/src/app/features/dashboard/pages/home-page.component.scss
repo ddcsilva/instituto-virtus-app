@@ -3,6 +3,20 @@
   color: var(--virtus-preto);
 }
 
+.page-header {
+  position: relative;
+  margin-bottom: var(--espaco-8);
+}
+
+.page-header-decoration {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: var(--z-abaixo);
+  opacity: 0.8;
+  transform: rotate(15deg) translateY(-10px);
+}
+
 .welcome-card {
   background: var(--virtus-branco);
   box-shadow: var(--sombra-media);
@@ -84,5 +98,9 @@
 @media (max-width: 768px) {
   .welcome-sections {
     grid-template-columns: 1fr;
+  }
+
+  .page-header-decoration {
+    display: none;
   }
 }
