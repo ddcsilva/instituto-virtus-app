@@ -1,0 +1,26 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$virtus-primary: mat.$indigo-palette;
+$virtus-accent: mat.$blue-grey-palette;
+$virtus-warn: mat.$red-palette;
+
+$virtus-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: $virtus-primary,
+      tertiary: $virtus-accent,
+      warn: $virtus-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+:root {
+  @include mat.all-component-themes($virtus-theme);
+}
