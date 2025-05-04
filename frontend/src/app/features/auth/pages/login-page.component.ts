@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../../core/auth/auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-login-page',
@@ -27,6 +28,7 @@ export class LoginPageComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private notificationService = inject(NotificationService);
 
   esconderSenha = true;
 
@@ -44,6 +46,7 @@ export class LoginPageComponent {
       this.router.navigateByUrl('/');
     } catch (error) {
       console.error('Erro ao logar:', error);
+      this.notificationService.error('Usuário ou senha incorretos.');
     }
   }
 

@@ -8,6 +8,7 @@ import {
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private auth: Auth = inject(Auth);
   private router = inject(Router);
+  private notificationService = inject(NotificationService);
   private usuarioSubject = new BehaviorSubject<User | null>(null);
   private carregandoSubject = new BehaviorSubject<boolean>(true);
 
@@ -49,6 +51,7 @@ export class AuthService {
     try {
       await signOut(this.auth);
       localStorage.removeItem('idToken');
+      this.notificationService.success('Você saiu com sucesso. Até logo!');
       this.router.navigateByUrl('/login');
     } catch (error) {
       console.error('Erro ao fazer logout:', error);
