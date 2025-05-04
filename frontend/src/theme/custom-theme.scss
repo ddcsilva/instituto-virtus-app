@@ -10,19 +10,18 @@ $virtus-primary: mat.m2-define-palette(
     300: #ffd54f,
     400: #ffca28,
     500: #ffc107,
-    // principal
     600: #ffb300,
     700: #ffa000,
     800: #ff8f00,
     900: #ff6f00,
     contrast: (
       500: #1c1c1c,
-      // texto escuro sobre amarelo
+      600: #1c1c1c,
     ),
   )
 );
 
-$virtus-accent: mat.m2-define-palette(mat.$m2-grey-palette, 900); // fundo preto
+$virtus-accent: mat.m2-define-palette(mat.$m2-grey-palette, 900);
 
 $virtus-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
@@ -41,3 +40,11 @@ $virtus-theme: mat.m2-define-dark-theme(
 );
 
 @include mat.all-component-themes($virtus-theme);
+
+:root {
+  --virtus-amarelo: #ffc107;
+  --virtus-amarelo-escuro: #ff8f00;
+  --virtus-preto: #121212;
+  --virtus-branco: #ffffff;
+  --virtus-vermelho: #f44336;
+}
