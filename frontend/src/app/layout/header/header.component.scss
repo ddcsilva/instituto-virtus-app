@@ -1,0 +1,14 @@
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1;
+}
