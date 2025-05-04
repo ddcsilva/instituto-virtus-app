@@ -2,30 +2,34 @@
 
 @include mat.core();
 
+// Design tokens sofisticados para o Instituto Virtus
+// Baseado em princípios de harmonia visual e branding institucional
+
+// Sistema de cores
 $virtus-primary: mat.m2-define-palette(
   (
     50: #fff8e1,
-    100: #ffecb3,
+    100: #ffefb3,
     200: #ffe082,
     300: #ffd54f,
-    400: #ffca28,
+    400: #ffc83d,
     500: #ffc107,
-    600: #ffb300,
-    700: #ffa000,
-    800: #ff8f00,
-    900: #ff6f00,
+    // Mantemos o amarelo principal, mas com aplicações mais estratégicas
+    600: #e0a800,
+    700: #b88a2a,
+    800: #8c6a1a,
+    900: #5c470c,
     contrast: (
-      500: #1c1c1c,
-      600: #1c1c1c,
+      500: #181818,
+      600: #181818,
     ),
   )
 );
 
 $virtus-accent: mat.m2-define-palette(mat.$m2-grey-palette, 900);
-
 $virtus-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-$virtus-theme: mat.m2-define-dark-theme(
+$virtus-theme: mat.m2-define-light-theme(
   (
     color: (
       primary: $virtus-primary,
@@ -41,10 +45,102 @@ $virtus-theme: mat.m2-define-dark-theme(
 
 @include mat.all-component-themes($virtus-theme);
 
+/**
+ * Design System do Instituto Virtus
+ * --------------------------------
+ * Tokens semânticos e valores cuidadosamente escolhidos para
+ * criar uma experiência visual coesa, acolhedora e que reflita
+ * os valores de um instituto cristão de teologia e música.
+ */
+
 :root {
-  --virtus-amarelo: #ffc107;
-  --virtus-amarelo-escuro: #ff8f00;
-  --virtus-preto: #121212;
+  // Paleta de cores principal
+  --virtus-amarelo: #ffc83d;
+  --virtus-amarelo-escuro: #e0a800;
+  --virtus-amarelo-claro: #ffe082;
+  --virtus-preto: #181818;
   --virtus-branco: #ffffff;
+  --virtus-cinza-claro: #f5f5f5;
+  --virtus-cinza-medio: #e0e0e0;
+  --virtus-cinza-escuro: #444444;
   --virtus-vermelho: #f44336;
+
+  // Cores semânticas
+  --cor-texto-principal: var(--virtus-preto);
+  --cor-texto-secundario: var(--virtus-cinza-escuro);
+  --cor-texto-terciario: rgba(24, 24, 24, 0.7);
+  --cor-texto-invertido: var(--virtus-branco);
+  --cor-fundo-principal: var(--virtus-amarelo);
+  --cor-fundo-secundario: var(--virtus-cinza-claro);
+  --cor-fundo-terciario: var(--virtus-branco);
+  --cor-destaque: var(--virtus-amarelo-escuro);
+  --cor-erro: var(--virtus-vermelho);
+
+  // Tipografia - Escala harmônica inspirada em tipografia teológica clássica
+  --fonte-familia: "Montserrat", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fonte-peso-regular: 400;
+  --fonte-peso-medio: 500;
+  --fonte-peso-semibold: 600;
+  --fonte-peso-bold: 700;
+
+  --texto-xs: 0.75rem; // 12px
+  --texto-sm: 0.875rem; // 14px
+  --texto-base: 1rem; // 16px
+  --texto-md: 1.125rem; // 18px
+  --texto-lg: 1.25rem; // 20px
+  --texto-xl: 1.5rem; // 24px
+  --texto-2xl: 1.875rem; // 30px
+  --texto-3xl: 2.25rem; // 36px
+
+  --linha-altura-apertada: 1.2;
+  --linha-altura-normal: 1.5;
+  --linha-altura-relaxada: 1.8;
+
+  --tracking-apertado: -0.01em;
+  --tracking-normal: 0;
+  --tracking-amplo: 0.05em;
+
+  // Espacamento - Sistema 8pt para criar ritmo visual consistente
+  --espaco-1: 0.25rem; // 4px
+  --espaco-2: 0.5rem; // 8px
+  --espaco-3: 0.75rem; // 12px
+  --espaco-4: 1rem; // 16px
+  --espaco-5: 1.25rem; // 20px
+  --espaco-6: 1.5rem; // 24px
+  --espaco-8: 2rem; // 32px
+  --espaco-10: 2.5rem; // 40px
+  --espaco-12: 3rem; // 48px
+  --espaco-16: 4rem; // 64px
+
+  // Bordas e cantos - Consistentes e suaves
+  --borda-largura-fina: 1px;
+  --borda-largura-media: 2px;
+  --borda-largura-grossa: 4px;
+  --borda-raio-sm: 0.25rem; // 4px
+  --borda-raio-md: 0.5rem; // 8px
+  --borda-raio-lg: 1rem; // 16px
+  --borda-raio-xl: 1.5rem; // 24px
+  --borda-raio-circular: 50%;
+
+  // Sombras - Sutis e elegantes
+  --sombra-baixa: 0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.07);
+  --sombra-media: 0 4px 8px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.08);
+  --sombra-alta: 0 8px 16px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+  --sombra-foco: 0 0 0 3px rgba(224, 168, 0, 0.3);
+
+  // Transições - Suaves e naturais
+  --transicao-rapida: 150ms ease-in-out;
+  --transicao-padrao: 250ms ease-in-out;
+  --transicao-lenta: 350ms ease-in-out;
+
+  // Containers e layout
+  --largura-maxima-container: 1200px;
+  --largura-maxima-texto: 75ch; // Ideal para leitura
+
+  // Z-index
+  --z-abaixo: -1;
+  --z-normal: 1;
+  --z-flutuante: 10;
+  --z-sobreposto: 100;
+  --z-modal: 1000;
 }

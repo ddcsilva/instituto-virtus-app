@@ -46,4 +46,8 @@ export class LoginPageComponent {
       console.error('Erro ao logar:', error);
     }
   }
+
+  get currentYear(): number {
+    return new Date().getFullYear();
+  }
 }

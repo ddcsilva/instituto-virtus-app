@@ -1,14 +1,105 @@
 .header-toolbar {
   display: flex;
   justify-content: space-between;
-  padding: 0 1rem;
+  align-items: center;
+  padding: 0 var(--espaco-4);
+  height: 72px;
+  background-color: var(--virtus-amarelo);
+  color: var(--virtus-preto);
+  box-shadow: var(--sombra-baixa);
+  position: relative;
+  z-index: var(--z-flutuante);
+
+  /* Técnica do CSS Secrets: gradiente sutil para dar mais profundidade */
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+
+  /* Elementos decorativos inspirados no símbolo do instituto */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right,
+      var(--virtus-amarelo-escuro),
+      var(--virtus-amarelo-escuro) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--virtus-amarelo-escuro) 75%
+    );
+    opacity: 0.7;
+  }
 }
 
 .logo {
-  font-size: 1.3rem;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: var(--texto-lg);
+  font-weight: var(--fonte-peso-bold);
+  letter-spacing: var(--tracking-apertado);
+
+  .logo-icon {
+    margin-right: var(--espaco-2);
+    height: 30px;
+    width: 30px;
+  }
+
+  /* Efeito sutil de destaque no texto */
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 .spacer {
   flex: 1;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-4);
+
+  a {
+    color: var(--virtus-preto);
+    font-weight: var(--fonte-peso-semibold);
+    text-decoration: none;
+    padding: var(--espaco-2) var(--espaco-3);
+    border-radius: var(--borda-raio-md);
+    transition: all var(--transicao-rapida);
+    position: relative;
+
+    &:hover, &:focus {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &.active {
+      color: var(--virtus-preto);
+      font-weight: var(--fonte-peso-bold);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: var(--espaco-3);
+        right: var(--espaco-3);
+        height: 2px;
+        background-color: var(--virtus-preto);
+      }
+    }
+  }
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .header-toolbar {
+    padding: 0 var(--espaco-2);
+    height: 64px;
+  }
+
+  .logo {
+    font-size: var(--texto-base);
+  }
 }

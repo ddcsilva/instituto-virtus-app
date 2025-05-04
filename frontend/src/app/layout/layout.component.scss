@@ -2,11 +2,60 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .content {
   flex: 1;
-  padding: 1rem;
-  background-color: #121212;
-  color: white;
+  padding: var(--espaco-6) var(--espaco-4);
+  background-color: var(--virtus-cinza-claro);
+  color: var(--virtus-preto);
+  position: relative;
+
+  /* Padrão visual sutil no fundo */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+      var(--virtus-amarelo-claro) 1px,
+      transparent 1px
+    );
+    background-size: 24px 24px;
+    opacity: 0.3;
+    z-index: var(--z-abaixo);
+    pointer-events: none;
+  }
+}
+
+.content-container {
+  max-width: var(--largura-maxima-container);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.page-title {
+  margin-bottom: var(--espaco-6);
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 60px;
+    height: 3px;
+    background: var(--virtus-amarelo-escuro);
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: var(--espaco-4) var(--espaco-3);
+  }
 }

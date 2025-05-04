@@ -1,5 +1,88 @@
 :host {
   display: block;
-  padding: 2rem;
-  color: white;
+  color: var(--virtus-preto);
+}
+
+.welcome-card {
+  background: var(--virtus-branco);
+  box-shadow: var(--sombra-media);
+  overflow: hidden;
+
+  /* Decoração sutil no topo do card */
+  &::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: linear-gradient(
+      to right,
+      var(--virtus-amarelo),
+      var(--virtus-amarelo-escuro)
+    );
+    margin: -1px -1px 0;
+  }
+}
+
+.welcome-content {
+  margin-bottom: var(--espaco-6);
+  padding-bottom: var(--espaco-6);
+  border-bottom: 1px solid var(--virtus-cinza-medio);
+
+  p {
+    font-size: var(--texto-lg);
+    font-weight: var(--fonte-peso-semibold);
+    color: var(--cor-texto-principal);
+  }
+}
+
+.welcome-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--espaco-6);
+  margin-top: var(--espaco-4);
+
+  .section {
+    background-color: var(--virtus-cinza-claro);
+    padding: var(--espaco-6);
+    border-radius: var(--borda-raio-md);
+    transition: transform var(--transicao-padrao),
+      box-shadow var(--transicao-padrao);
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sombra-media);
+    }
+
+    h3 {
+      font-size: var(--texto-lg);
+      margin-bottom: var(--espaco-2);
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 40px;
+        height: 2px;
+        background-color: var(--virtus-amarelo-escuro);
+      }
+    }
+
+    p {
+      margin-bottom: var(--espaco-4);
+      color: var(--cor-texto-secundario);
+    }
+
+    .btn {
+      display: inline-block;
+    }
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .welcome-sections {
+    grid-template-columns: 1fr;
+  }
 }
