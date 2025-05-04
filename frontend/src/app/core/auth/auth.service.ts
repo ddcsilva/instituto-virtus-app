@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   User,
 } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -13,6 +14,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   private auth = inject(Auth);
+  private router = inject(Router);
 
   private usuarioSubject = new BehaviorSubject<User | null>(null);
   public usuario$ = this.usuarioSubject.asObservable();
@@ -20,7 +22,7 @@ export class AuthService {
   constructor() {
     onAuthStateChanged(this.auth, async (user) => {
       this.usuarioSubject.next(user);
-      
+
       if (user) {
         const token = await user.getIdToken();
         localStorage.setItem('idToken', token);
@@ -30,12 +32,14 @@ export class AuthService {
     });
   }
 
-  async login(email: string, senha: string): Promise<void> {
+  async entrar(email: string, senha: string): Promise<void> {
     await signInWithEmailAndPassword(this.auth, email, senha);
   }
 
-  async logout(): Promise<void> {
+  async sair(): Promise<void> {
     await signOut(this.auth);
+    localStorage.removeItem('idToken');
+    this.router.navigateByUrl('/login');
   }
 
   get token(): string | null {
