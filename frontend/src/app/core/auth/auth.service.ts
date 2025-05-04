@@ -13,7 +13,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private auth = inject(Auth);
+  private auth: Auth = inject(Auth);
   private router = inject(Router);
   private usuarioSubject = new BehaviorSubject<User | null>(null);
   private carregandoSubject = new BehaviorSubject<boolean>(true);
@@ -23,6 +23,7 @@ export class AuthService {
 
   constructor() {
     onAuthStateChanged(this.auth, async (user) => {
+      console.log('Estado de autenticação alterado:', user?.email);
       this.usuarioSubject.next(user);
       this.carregandoSubject.next(false);
 
@@ -36,13 +37,23 @@ export class AuthService {
   }
 
   async entrar(email: string, senha: string): Promise<void> {
-    await signInWithEmailAndPassword(this.auth, email, senha);
+    try {
+      await signInWithEmailAndPassword(this.auth, email, senha);
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      throw error;
+    }
   }
 
   async sair(): Promise<void> {
-    await signOut(this.auth);
-    localStorage.removeItem('idToken');
-    this.router.navigateByUrl('/login');
+    try {
+      await signOut(this.auth);
+      localStorage.removeItem('idToken');
+      this.router.navigateByUrl('/login');
+    } catch (error) {
+      console.error('Erro ao fazer logout:', error);
+      throw error;
+    }
   }
 
   get token(): string | null {
