@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using InstitutoVirtusApp.Domain.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,11 +20,14 @@ public class TesteController : ControllerBase
     [HttpGet("usuario")]
     public IActionResult ObterUsuario()
     {
+        Debug.WriteLine($"Id: {_userContext.UserId}");
+        Debug.WriteLine($"Email: {_userContext.Email}");
+        Debug.WriteLine($"Nome: {_userContext.Name}");
         return Ok(new
         {
             Id = _userContext.UserId,
             Email = _userContext.Email,
-            Nome = _userContext.Name ?? "Nome não cadastrado"
+            Name = _userContext.Name ?? "Nome não cadastrado"
         });
     }
 }

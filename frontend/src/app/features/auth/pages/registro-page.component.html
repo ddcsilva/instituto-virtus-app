@@ -1,0 +1,18 @@
+<form [formGroup]="formulario" (ngSubmit)="registrar()">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Nome completo</mat-label>
+    <input matInput formControlName="nome" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Senha</mat-label>
+    <input matInput formControlName="senha" type="password" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Cadastrar</button>
+</form>

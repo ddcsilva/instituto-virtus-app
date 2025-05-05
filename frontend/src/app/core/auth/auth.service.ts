@@ -5,6 +5,8 @@ import {
   signOut,
   onAuthStateChanged,
   User,
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -55,6 +57,29 @@ export class AuthService {
       this.router.navigateByUrl('/login');
     } catch (error) {
       console.error('Erro ao fazer logout:', error);
+      throw error;
+    }
+  }
+
+  async registrar(email: string, senha: string, nome: string): Promise<void> {
+    try {
+      const cred = await createUserWithEmailAndPassword(
+        this.auth,
+        email,
+        senha
+      );
+
+      await updateProfile(cred.user, { displayName: nome });
+      await cred.user.reload();
+
+      const novoToken = await cred.user.getIdToken(true);
+      localStorage.setItem('idToken', novoToken);
+
+      this.usuarioSubject.next(cred.user);
+      this.notificationService.success(`Cadastro realizado com sucesso!`);
+    } catch (error) {
+      console.error('Erro ao registrar:', error);
+      this.notificationService.error('Erro ao registrar usuário.');
       throw error;
     }
   }
