@@ -24,3 +24,24 @@ export const authGuard: CanActivateFn = async () => {
     return false;
   }
 };
+
+export const authLoginGuard: CanActivateFn = async () => {
+  const authService = inject(AuthService);
+  const router = inject(Router);
+
+  try {
+    await firstValueFrom(authService.carregando$.pipe(filter((c) => !c)));
+
+    const usuario = await firstValueFrom(authService.usuario$);
+
+    if (usuario) {
+      router.navigateByUrl('/');
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Erro ao verificar autenticação:', error);
+    return true;
+  }
+};

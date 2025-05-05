@@ -58,7 +58,7 @@ export class RegistroPageComponent {
       const { nome, email, senha } = this.formulario.value;
       await this.authService.registrar(email!, senha!, nome!);
       this.notificationService.success('Cadastro realizado com sucesso!');
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/');
     } catch (error: any) {
       console.error('Erro ao registrar:', error);
 

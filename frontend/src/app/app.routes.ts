@@ -2,16 +2,18 @@ import { Routes } from '@angular/router';
 import { LoginPageComponent } from './features/auth/pages/login-page.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RegistroPageComponent } from './features/auth/pages/registro-page.component';
-import { authGuard } from './core/auth/auth.guard';
+import { authGuard, authLoginGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent,
+    canActivate: [authLoginGuard],
   },
   {
     path: 'cadastro',
     component: RegistroPageComponent,
+    canActivate: [authLoginGuard],
   },
   {
     path: '',
@@ -22,6 +24,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login',
+    redirectTo: '',
   },
 ];
