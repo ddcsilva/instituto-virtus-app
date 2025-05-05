@@ -1,0 +1,149 @@
+.registro-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--espaco-4);
+
+  /* Técnica de CSS Secrets: Padrão sutil de fundo */
+  background-image: linear-gradient(
+    45deg,
+    var(--virtus-amarelo) 25%,
+    var(--virtus-amarelo-claro) 25%,
+    var(--virtus-amarelo-claro) 50%,
+    var(--virtus-amarelo) 50%,
+    var(--virtus-amarelo) 75%,
+    var(--virtus-amarelo-claro) 75%,
+    var(--virtus-amarelo-claro)
+  );
+  background-size: 100px 100px;
+  background-attachment: fixed;
+}
+
+.registro-container {
+  max-width: 450px;
+  width: 100%;
+  background-color: var(--virtus-branco);
+  padding: var(--espaco-8);
+  border-radius: var(--borda-raio-lg);
+  box-shadow: var(--sombra-alta);
+  color: var(--virtus-preto);
+  position: relative;
+  overflow: hidden;
+
+  /* Adiciona uma borda sutil com efeito de ênfase */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+      to right,
+      var(--virtus-amarelo-escuro),
+      var(--virtus-amarelo)
+    );
+  }
+}
+
+.registro-header {
+  text-align: center;
+  margin-bottom: var(--espaco-6);
+
+  h1 {
+    font-size: var(--texto-2xl);
+    margin-bottom: var(--espaco-2);
+    color: var(--virtus-preto);
+  }
+
+  p {
+    color: var(--cor-texto-secundario);
+    font-size: var(--texto-sm);
+    max-width: 300px;
+    margin: 0 auto var(--espaco-4);
+  }
+}
+
+.form-footer {
+  margin-top: var(--espaco-6);
+  text-align: center;
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-secundario);
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: var(--espaco-4);
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-4);
+}
+
+/* Customizações específicas do Angular Material */
+::ng-deep {
+  .mat-mdc-form-field-subscript-wrapper {
+    height: 18px !important;
+  }
+
+  .mat-mdc-raised-button.mat-primary {
+    background-color: var(--virtus-amarelo);
+    color: var(--virtus-preto);
+    font-weight: var(--fonte-peso-semibold);
+    height: 48px;
+    border-radius: var(--borda-raio-md);
+    box-shadow: var(--sombra-baixa);
+    transition: all var(--transicao-padrao);
+
+    &:hover {
+      background-color: var(--virtus-amarelo-escuro);
+      box-shadow: var(--sombra-media);
+      transform: translateY(-1px);
+    }
+  }
+
+  .mat-mdc-stroked-button.mat-primary {
+    border-color: var(--virtus-amarelo);
+    color: var(--virtus-amarelo);
+    font-weight: var(--fonte-peso-medium);
+    height: 48px;
+    border-radius: var(--borda-raio-md);
+    transition: all var(--transicao-padrao);
+
+    &:hover {
+      background-color: var(--virtus-amarelo-claro);
+      border-color: var(--virtus-amarelo-escuro);
+      color: var(--virtus-amarelo-escuro);
+    }
+  }
+
+  .mat-mdc-form-field.mat-mdc-form-field-appearance-outline {
+    .mat-mdc-form-field-flex {
+      padding: 0 var(--espaco-3);
+    }
+
+    .mat-mdc-form-field-infix {
+      padding: var(--espaco-2) 0;
+    }
+
+    .mat-mdc-form-field-icon-suffix {
+      padding: 0 var(--espaco-2);
+    }
+  }
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .registro-container {
+    padding: var(--espaco-6) var(--espaco-4);
+  }
+
+  .registro-header h1 {
+    font-size: var(--texto-xl);
+  }
+}

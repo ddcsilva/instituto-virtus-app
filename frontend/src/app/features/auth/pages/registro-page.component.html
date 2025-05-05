@@ -1,18 +1,87 @@
-<form [formGroup]="formulario" (ngSubmit)="registrar()">
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Nome completo</mat-label>
-    <input matInput formControlName="nome" />
-  </mat-form-field>
+<div class="registro-page">
+  <div class="registro-container">
+    <div class="registro-header">
+      <h1>Crie sua conta</h1>
+      <p>Preencha os campos abaixo para se cadastrar no Instituto Virtus</p>
+    </div>
 
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Email</mat-label>
-    <input matInput formControlName="email" />
-  </mat-form-field>
+    <form [formGroup]="formulario" (ngSubmit)="registrar()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome completo</mat-label>
+        <input matInput formControlName="nome" />
+        <mat-icon matPrefix class="text-secondary">person</mat-icon>
+        <mat-error *ngIf="formulario.get('nome')?.hasError('required')">
+          Nome é obrigatório
+        </mat-error>
+        <mat-error *ngIf="formulario.get('nome')?.hasError('minlength')">
+          Nome deve ter pelo menos 3 caracteres
+        </mat-error>
+      </mat-form-field>
 
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Senha</mat-label>
-    <input matInput formControlName="senha" type="password" />
-  </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" type="email" />
+        <mat-icon matPrefix class="text-secondary">email</mat-icon>
+        <mat-error *ngIf="formulario.get('email')?.hasError('required')">
+          E-mail é obrigatório
+        </mat-error>
+        <mat-error *ngIf="formulario.get('email')?.hasError('email')">
+          E-mail inválido
+        </mat-error>
+      </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Cadastrar</button>
-</form>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Senha</mat-label>
+        <input
+          matInput
+          formControlName="senha"
+          [type]="esconderSenha ? 'password' : 'text'"
+        />
+        <mat-icon matPrefix class="text-secondary">lock</mat-icon>
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="esconderSenha = !esconderSenha"
+          type="button"
+        >
+          <mat-icon>{{
+            esconderSenha ? "visibility_off" : "visibility"
+          }}</mat-icon>
+        </button>
+        <mat-error *ngIf="formulario.get('senha')?.hasError('required')">
+          Senha é obrigatória
+        </mat-error>
+        <mat-error *ngIf="formulario.get('senha')?.hasError('minlength')">
+          Senha deve ter pelo menos 6 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-group">
+        <button
+          mat-raised-button
+          color="primary"
+          class="full-width"
+          type="submit"
+          [disabled]="carregando"
+        >
+          <mat-spinner diameter="20" *ngIf="carregando"></mat-spinner>
+          <span *ngIf="!carregando">Cadastrar</span>
+        </button>
+        <button
+          mat-stroked-button
+          color="primary"
+          class="full-width"
+          type="button"
+          routerLink="/login"
+          [disabled]="carregando"
+        >
+          Já tenho conta
+        </button>
+      </div>
+    </form>
+
+    <div class="form-footer">
+      <p>© {{ currentYear }} Instituto Virtus • Igreja Batista Bethesda</p>
+    </div>
+  </div>
+</div>

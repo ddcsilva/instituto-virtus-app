@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../../shared/services/notification.service';
@@ -19,6 +20,7 @@ import { NotificationService } from '../../../shared/services/notification.servi
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    RouterModule,
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss',
@@ -38,7 +40,20 @@ export class LoginPageComponent {
   });
 
   async entrar(): Promise<void> {
-    if (this.formulario.invalid) return;
+    if (this.formulario.invalid) {
+      if (this.formulario.get('email')?.hasError('required')) {
+        this.notificationService.error('E-mail é obrigatório');
+      } else if (this.formulario.get('email')?.hasError('email')) {
+        this.notificationService.error('E-mail inválido');
+      } else if (this.formulario.get('senha')?.hasError('required')) {
+        this.notificationService.error('Senha é obrigatória');
+      } else {
+        this.notificationService.error(
+          'Por favor, preencha todos os campos corretamente'
+        );
+      }
+      return;
+    }
 
     const { email, senha } = this.formulario.value;
     try {
