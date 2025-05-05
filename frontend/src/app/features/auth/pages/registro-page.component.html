@@ -1,14 +1,36 @@
-<div class="registro-page">
-  <div class="registro-container">
+<div class="registro-page" role="main">
+  <div class="registro-container" aria-label="Área de registro">
     <div class="registro-header">
-      <h1>Crie sua conta</h1>
-      <p>Preencha os campos abaixo para se cadastrar no Instituto Virtus</p>
+      <div class="logo" aria-label="Logo do Instituto Virtus">
+        <!-- Substitua o src pelo caminho do SVG/PNG real se disponível -->
+        <img
+          src="assets/logo-instituto-virtus.svg"
+          alt="Instituto Virtus"
+          tabindex="0"
+        />
+      </div>
+      <h1 tabindex="0">INSTITUTO VIRTUS</h1>
+      <p tabindex="0">Crie sua conta para acessar a plataforma</p>
     </div>
 
-    <form [formGroup]="formulario" (ngSubmit)="registrar()">
-      <mat-form-field appearance="outline" class="full-width">
+    <form
+      [formGroup]="formulario"
+      (ngSubmit)="registrar()"
+      aria-label="Formulário de registro"
+    >
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        floatLabel="always"
+      >
         <mat-label>Nome completo</mat-label>
-        <input matInput formControlName="nome" />
+        <input
+          matInput
+          formControlName="nome"
+          type="text"
+          aria-label="Nome completo"
+          autocomplete="name"
+        />
         <mat-icon matPrefix class="text-secondary">person</mat-icon>
         <mat-error *ngIf="formulario.get('nome')?.hasError('required')">
           Nome é obrigatório
@@ -18,9 +40,19 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        floatLabel="always"
+      >
         <mat-label>E-mail</mat-label>
-        <input matInput formControlName="email" type="email" />
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          aria-label="E-mail"
+          autocomplete="username"
+        />
         <mat-icon matPrefix class="text-secondary">email</mat-icon>
         <mat-error *ngIf="formulario.get('email')?.hasError('required')">
           E-mail é obrigatório
@@ -30,12 +62,18 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        floatLabel="always"
+      >
         <mat-label>Senha</mat-label>
         <input
           matInput
           formControlName="senha"
           [type]="esconderSenha ? 'password' : 'text'"
+          aria-label="Senha"
+          autocomplete="new-password"
         />
         <mat-icon matPrefix class="text-secondary">lock</mat-icon>
         <button
@@ -43,6 +81,7 @@
           matSuffix
           (click)="esconderSenha = !esconderSenha"
           type="button"
+          aria-label="Mostrar ou esconder senha"
         >
           <mat-icon>{{
             esconderSenha ? "visibility_off" : "visibility"
@@ -60,27 +99,26 @@
         <button
           mat-raised-button
           color="primary"
-          class="full-width"
+          class="full-width botao-registrar"
           type="submit"
-          [disabled]="carregando"
+          aria-label="Registrar"
         >
-          <mat-spinner diameter="20" *ngIf="carregando"></mat-spinner>
-          <span *ngIf="!carregando">Cadastrar</span>
+          Registrar
         </button>
         <button
           mat-stroked-button
           color="primary"
-          class="full-width"
+          class="full-width botao-voltar"
           type="button"
           routerLink="/login"
-          [disabled]="carregando"
+          aria-label="Voltar para login"
         >
-          Já tenho conta
+          Voltar para login
         </button>
       </div>
     </form>
 
-    <div class="form-footer">
+    <div class="form-footer" tabindex="0">
       <p>© {{ currentYear }} Instituto Virtus • Igreja Batista Bethesda</p>
     </div>
   </div>

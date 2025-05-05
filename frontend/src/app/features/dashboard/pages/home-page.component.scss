@@ -6,6 +6,12 @@
 .page-header {
   position: relative;
   margin-bottom: var(--espaco-8);
+  text-transform: uppercase;
+  font-family: var(--fonte-familia);
+  font-weight: var(--fonte-peso-semibold);
+  letter-spacing: var(--tracking-amplo);
+  color: var(--virtus-preto);
+  font-size: var(--texto-2xl);
 }
 
 .page-header-decoration {
@@ -21,8 +27,9 @@
   background: var(--virtus-branco);
   box-shadow: var(--sombra-media);
   overflow: hidden;
+  border-radius: var(--borda-raio-lg);
+  margin-bottom: var(--espaco-8);
 
-  /* Decoração sutil no topo do card */
   &::before {
     content: "";
     display: block;
@@ -33,6 +40,8 @@
       var(--virtus-amarelo-escuro)
     );
     margin: -1px -1px 0;
+    border-top-left-radius: 80% 16px;
+    border-top-right-radius: 60% 24px;
   }
 }
 
@@ -45,6 +54,8 @@
     font-size: var(--texto-lg);
     font-weight: var(--fonte-peso-semibold);
     color: var(--cor-texto-principal);
+    font-family: var(--fonte-familia);
+    text-align: center;
   }
 }
 
@@ -66,10 +77,12 @@
     justify-content: space-between;
     min-height: 220px;
     box-sizing: border-box;
+    box-shadow: var(--sombra-baixa);
 
     &:hover {
-      transform: translateY(-4px);
+      transform: translateY(-4px) scale(1.01);
       box-shadow: var(--sombra-media);
+      background-color: var(--virtus-amarelo-claro);
     }
 
     h3 {
@@ -77,6 +90,11 @@
       margin-bottom: var(--espaco-2);
       position: relative;
       display: inline-block;
+      text-transform: uppercase;
+      font-family: var(--fonte-familia);
+      font-weight: var(--fonte-peso-semibold);
+      letter-spacing: var(--tracking-amplo);
+      color: var(--virtus-preto);
 
       &::after {
         content: "";
@@ -97,6 +115,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: var(--texto-md);
+      font-family: var(--fonte-familia);
     }
 
     .btn {
@@ -104,6 +124,15 @@
       margin: 0 auto;
       min-width: 140px;
       margin-top: var(--espaco-4);
+      font-family: var(--fonte-familia);
+      font-weight: var(--fonte-peso-semibold);
+      border-radius: var(--borda-raio-md);
+      transition: box-shadow var(--transicao-padrao),
+        transform var(--transicao-padrao);
+      &:active {
+        box-shadow: var(--sombra-media);
+        transform: scale(0.97);
+      }
     }
   }
 }

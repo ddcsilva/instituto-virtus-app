@@ -1,23 +1,51 @@
-<div class="login-page">
-  <div class="login-container">
+<div class="login-page" role="main">
+  <div class="login-container" aria-label="Área de login">
     <div class="login-header">
-      <h1>Instituto Virtus</h1>
-      <p>Acesse sua conta para continuar</p>
+      <div class="logo" aria-label="Logo do Instituto Virtus">
+        <!-- Substitua o src pelo caminho do SVG/PNG real se disponível -->
+        <img
+          src="assets/logo-instituto-virtus.svg"
+          alt="Instituto Virtus"
+          tabindex="0"
+        />
+      </div>
+      <h1 class="titulo-institucional" tabindex="0">INSTITUTO VIRTUS</h1>
+      <p class="subtitulo" tabindex="0">Acesse sua conta para continuar</p>
     </div>
 
-    <form [formGroup]="formulario" (ngSubmit)="entrar()">
-      <mat-form-field appearance="outline" class="full-width">
+    <form
+      [formGroup]="formulario"
+      (ngSubmit)="entrar()"
+      aria-label="Formulário de login"
+    >
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        floatLabel="always"
+      >
         <mat-label>E-mail</mat-label>
-        <input matInput formControlName="email" type="email" />
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          aria-label="E-mail"
+          autocomplete="username"
+        />
         <mat-icon matPrefix class="text-secondary">email</mat-icon>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field
+        appearance="outline"
+        class="full-width"
+        floatLabel="always"
+      >
         <mat-label>Senha</mat-label>
         <input
           matInput
           formControlName="senha"
           [type]="esconderSenha ? 'password' : 'text'"
+          aria-label="Senha"
+          autocomplete="current-password"
         />
         <mat-icon matPrefix class="text-secondary">lock</mat-icon>
         <button
@@ -25,6 +53,7 @@
           matSuffix
           (click)="esconderSenha = !esconderSenha"
           type="button"
+          aria-label="Mostrar ou esconder senha"
         >
           <mat-icon>{{
             esconderSenha ? "visibility_off" : "visibility"
@@ -36,24 +65,26 @@
         <button
           mat-raised-button
           color="primary"
-          class="full-width"
+          class="full-width botao-entrar"
           type="submit"
+          aria-label="Entrar"
         >
           Entrar
         </button>
         <button
           mat-stroked-button
           color="primary"
-          class="full-width"
+          class="full-width botao-cadastrar"
           type="button"
           routerLink="/cadastro"
+          aria-label="Quero me cadastrar"
         >
           Quero me cadastrar
         </button>
       </div>
     </form>
 
-    <div class="form-footer">
+    <div class="form-footer" tabindex="0">
       <p>© {{ currentYear }} Instituto Virtus • Igreja Batista Bethesda</p>
     </div>
   </div>

@@ -14,6 +14,10 @@
   box-shadow: var(--sombra-baixa);
   position: relative;
   z-index: var(--z-flutuante);
+  text-transform: uppercase;
+  font-family: var(--fonte-familia);
+  font-weight: var(--fonte-peso-semibold);
+  letter-spacing: var(--tracking-amplo);
 
   /* Técnica do CSS Secrets: gradiente sutil para dar mais profundidade */
   background-image: linear-gradient(
@@ -39,6 +43,8 @@
       var(--virtus-amarelo-escuro) 75%
     );
     opacity: 0.7;
+    border-bottom-left-radius: 60% 8px;
+    border-bottom-right-radius: 80% 12px;
   }
 }
 
@@ -47,10 +53,12 @@
   align-items: center;
   font-size: var(--texto-lg);
   font-weight: var(--fonte-peso-bold);
-  letter-spacing: var(--tracking-apertado);
+  letter-spacing: var(--tracking-amplo);
   text-decoration: none;
   color: var(--virtus-preto);
   transition: all var(--transicao-rapida);
+  text-transform: uppercase;
+  font-family: var(--fonte-familia);
 
   &:hover {
     transform: translateY(-1px);
@@ -80,10 +88,14 @@
     border-radius: var(--borda-raio-md);
     transition: all var(--transicao-rapida);
     position: relative;
+    text-transform: uppercase;
+    font-family: var(--fonte-familia);
+    letter-spacing: var(--tracking-amplo);
 
     &:hover,
     &:focus {
       background-color: rgba(0, 0, 0, 0.05);
+      color: var(--virtus-amarelo-escuro);
     }
 
     &.active {
@@ -98,6 +110,7 @@
         right: var(--espaco-3);
         height: 2px;
         background-color: var(--virtus-preto);
+        border-radius: var(--borda-raio-md);
       }
     }
   }
@@ -109,6 +122,9 @@
   align-items: center;
   justify-content: center;
   color: var(--virtus-preto);
+  background: transparent;
+  border-radius: var(--borda-raio-md);
+  transition: background-color var(--transicao-rapida);
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
@@ -127,6 +143,8 @@
   transition: transform var(--transicao-padrao);
   overflow-y: auto;
   box-shadow: var(--sombra-alta);
+  border-top-left-radius: 60% 24px;
+  border-bottom-left-radius: 80% 32px;
 
   &.open {
     transform: translateX(-280px);
@@ -158,6 +176,7 @@
   justify-content: space-between;
   padding: var(--espaco-4);
   background-color: var(--virtus-amarelo-escuro);
+  border-top-left-radius: 60% 24px;
 
   button {
     color: var(--virtus-branco);
@@ -193,13 +212,17 @@
   color: var(--virtus-branco);
   font-weight: var(--fonte-peso-bold);
   font-size: var(--texto-lg);
+  text-transform: uppercase;
+  font-family: var(--fonte-familia);
+  letter-spacing: var(--tracking-amplo);
 }
 
 /* Responsividade fluida */
 @media (max-width: 767px) {
   .header-toolbar {
+    height: 56px;
     padding: 0 var(--espaco-2);
-    height: 64px;
+    font-size: var(--texto-base);
   }
 
   .logo {

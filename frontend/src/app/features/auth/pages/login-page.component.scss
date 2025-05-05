@@ -5,32 +5,43 @@
   justify-content: center;
   min-height: 100vh;
   padding: var(--espaco-4);
+  background: linear-gradient(
+    120deg,
+    var(--virtus-amarelo) 0%,
+    var(--virtus-amarelo-claro) 100%
+  );
+  position: relative;
+  overflow: hidden;
 
   /* Técnica de CSS Secrets: Padrão sutil de fundo */
-  background-image: linear-gradient(
-    45deg,
-    var(--virtus-amarelo) 25%,
-    var(--virtus-amarelo-claro) 25%,
-    var(--virtus-amarelo-claro) 50%,
-    var(--virtus-amarelo) 50%,
-    var(--virtus-amarelo) 75%,
-    var(--virtus-amarelo-claro) 75%,
-    var(--virtus-amarelo-claro)
-  );
-  background-size: 100px 100px;
-  background-attachment: fixed;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 180px;
+    background: var(--virtus-branco);
+    border-bottom-left-radius: 80% 40px;
+    border-bottom-right-radius: 60% 60px;
+    z-index: 0;
+    opacity: 0.7;
+    pointer-events: none;
+  }
 }
 
 .login-container {
-  max-width: 450px;
+  max-width: 420px;
   width: 100%;
   background-color: var(--virtus-branco);
-  padding: var(--espaco-8);
+  padding: var(--espaco-8) var(--espaco-6);
   border-radius: var(--borda-raio-lg);
   box-shadow: var(--sombra-alta);
   color: var(--virtus-preto);
   position: relative;
+  z-index: 1;
   overflow: hidden;
+  margin: var(--espaco-4) 0;
 
   /* Adiciona uma borda sutil com efeito de ênfase */
   &::before {
@@ -55,24 +66,34 @@
   .logo {
     margin-bottom: var(--espaco-4);
     max-width: 120px;
+    margin-left: auto;
+    margin-right: auto;
 
     img {
       width: 100%;
       height: auto;
+      display: block;
     }
   }
 
-  h1 {
+  .titulo-institucional {
+    font-family: var(--fonte-familia);
     font-size: var(--texto-2xl);
-    margin-bottom: var(--espaco-2);
+    font-weight: var(--fonte-peso-semibold);
+    letter-spacing: var(--tracking-amplo);
     color: var(--virtus-preto);
+    text-transform: uppercase;
+    margin-bottom: var(--espaco-2);
+    line-height: var(--linha-altura-apertada);
   }
 
-  p {
+  .subtitulo {
     color: var(--cor-texto-secundario);
-    font-size: var(--texto-sm);
-    max-width: 300px;
+    font-size: var(--texto-md);
+    max-width: 320px;
     margin: 0 auto var(--espaco-4);
+    font-family: var(--fonte-familia);
+    font-weight: var(--fonte-peso-regular);
   }
 }
 
@@ -120,10 +141,11 @@
   .mat-mdc-stroked-button.mat-primary {
     border-color: var(--virtus-amarelo);
     color: var(--virtus-amarelo);
-    font-weight: var(--fonte-peso-medium);
+    font-weight: var(--fonte-peso-semibold);
     height: 48px;
     border-radius: var(--borda-raio-md);
     transition: all var(--transicao-padrao);
+    background: var(--virtus-branco);
 
     &:hover {
       background-color: var(--virtus-amarelo-claro);
@@ -135,25 +157,72 @@
   .mat-mdc-form-field.mat-mdc-form-field-appearance-outline {
     .mat-mdc-form-field-flex {
       padding: 0 var(--espaco-3);
+      font-family: var(--fonte-familia);
     }
 
     .mat-mdc-form-field-infix {
       padding: var(--espaco-2) 0;
+      font-size: var(--texto-md);
+      color: var(--cor-texto-principal);
     }
 
     .mat-mdc-form-field-icon-suffix {
       padding: 0 var(--espaco-2);
     }
+
+    .mat-mdc-form-field-outline {
+      border-radius: var(--borda-raio-md);
+    }
+
+    .mat-mdc-form-field-outline-thick {
+      border-width: var(--borda-largura-media);
+    }
+
+    .mat-mdc-form-field-outline-gap {
+      border-radius: var(--borda-raio-md);
+    }
+  }
+
+  .mat-mdc-input-element {
+    font-family: var(--fonte-familia);
+    font-size: var(--texto-md);
+    color: var(--cor-texto-principal);
+
+    &::placeholder {
+      color: var(--cor-texto-terciario);
+      opacity: 1;
+    }
+  }
+
+  .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline {
+    border-color: var(--virtus-amarelo-escuro) !important;
+    box-shadow: 0 0 0 2px rgba(224, 168, 0, 0.15);
+  }
+
+  .mat-mdc-form-field.mat-form-field-invalid .mat-mdc-form-field-outline {
+    border-color: var(--cor-erro) !important;
+    box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.12);
   }
 }
 
 /* Responsividade */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .login-container {
-    padding: var(--espaco-6) var(--espaco-4);
+    padding: var(--espaco-6) var(--espaco-3);
+    max-width: 98vw;
   }
 
-  .login-header h1 {
+  .login-header .titulo-institucional {
     font-size: var(--texto-xl);
+  }
+
+  .login-header .subtitulo {
+    font-size: var(--texto-base);
+  }
+}
+
+@media (max-width: 400px) {
+  .login-container {
+    padding: var(--espaco-4) var(--espaco-2);
   }
 }
