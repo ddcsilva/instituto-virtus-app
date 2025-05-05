@@ -173,3 +173,9 @@ Thumbs.db
 *.log
 *.tmp
 mono_crash.*
+
+# =========================================
+# Outros arquivos e pastas
+# =========================================
+# Firebase
+secrets
