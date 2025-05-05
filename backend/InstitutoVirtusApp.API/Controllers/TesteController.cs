@@ -20,9 +20,6 @@ public class TesteController : ControllerBase
     [HttpGet("usuario")]
     public IActionResult ObterUsuario()
     {
-        Debug.WriteLine($"Id: {_userContext.UserId}");
-        Debug.WriteLine($"Email: {_userContext.Email}");
-        Debug.WriteLine($"Nome: {_userContext.Name}");
         return Ok(new
         {
             Id = _userContext.UserId,

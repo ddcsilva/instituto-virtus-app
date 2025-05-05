@@ -20,5 +20,5 @@ public class UserContext : IUserContext
         _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value;
 
     public string? Name =>
-        _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Name)?.Value;
+        _httpContextAccessor.HttpContext?.User?.FindFirst("name")?.Value;
 }
