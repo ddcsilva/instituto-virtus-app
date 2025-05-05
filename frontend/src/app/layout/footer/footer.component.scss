@@ -55,9 +55,18 @@
   font-family: var(--fonte-familia);
   letter-spacing: var(--tracking-amplo);
 
-  svg {
-    height: 24px;
+  .footer-logo-image {
     width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+    transition: transform var(--transicao-rapida);
+  }
+
+  &:hover .footer-logo-image {
+    transform: rotate(15deg);
+    opacity: 1;
   }
 }
 

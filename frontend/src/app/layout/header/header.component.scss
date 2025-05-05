@@ -59,13 +59,24 @@
   transition: all var(--transicao-rapida);
   text-transform: uppercase;
   font-family: var(--fonte-familia);
+  gap: var(--espaco-2);
 
   &:hover {
     transform: translateY(-1px);
   }
 
+  .logo-image {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    transition: transform var(--transicao-rapida);
+  }
+
+  &:hover .logo-image {
+    transform: rotate(15deg);
+  }
+
   .logo-text {
-    margin-left: var(--espaco-2);
     /* Efeito sutil de destaque no texto */
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
   }
@@ -227,6 +238,11 @@
 
   .logo {
     font-size: var(--texto-base);
+
+    .logo-image {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   /* Logo responsivo - em telas muito pequenas, esconde o texto */
