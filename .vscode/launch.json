@@ -2,6 +2,23 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": ".NET API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-dotnet",
+      "program": "${workspaceFolder}/backend/Virtus.API/bin/Debug/net7.0/Virtus.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/backend/Virtus.API",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    {
       "type": "chrome",
       "request": "launch",
       "name": "Debug Angular (Chrome)",
