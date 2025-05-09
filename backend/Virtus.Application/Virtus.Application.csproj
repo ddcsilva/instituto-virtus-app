@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Virtus.Domain\Virtus.Domain.csproj" />
+    <ProjectReference Include="..\Virtus.Infra\Virtus.Infra.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

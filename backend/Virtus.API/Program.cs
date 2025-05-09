@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigurarControllers();
 builder.Services.ConfigurarCors();
+builder.Services.ConfigurarDbContext();
 builder.Services.ConfigurarSwagger();
 builder.Services.ConfigurarDependencias();
 
