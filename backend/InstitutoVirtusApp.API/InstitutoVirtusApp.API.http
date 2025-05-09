@@ -1,6 +1,0 @@
-@InstitutoVirtusApp.API_HostAddress = http://localhost:5094
-
-GET {{InstitutoVirtusApp.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
