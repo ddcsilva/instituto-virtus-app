@@ -24,12 +24,12 @@ public class AlunoRepositoryTests
     public async Task Deve_adicionar_e_buscar_aluno_por_id()
     {
         using var context = CriarDbContext();
-        var repo = new AlunoRepository(context);
+        var repository = new AlunoRepository(context);
 
         var aluno = new Aluno("Maria", "maria@virtus.org", new DateTime(1999, 10, 1));
-        await repo.AdicionarAsync(aluno);
+        await repository.AdicionarAsync(aluno);
 
-        var alunoEncontrado = await repo.ObterPorIdAsync(aluno.Id);
+        var alunoEncontrado = await repository.ObterPorIdAsync(aluno.Id);
 
         Assert.NotNull(alunoEncontrado);
         Assert.Equal("Maria", alunoEncontrado!.Nome);
@@ -39,15 +39,15 @@ public class AlunoRepositoryTests
     public async Task Deve_atualizar_dados_do_aluno()
     {
         using var context = CriarDbContext();
-        var repo = new AlunoRepository(context);
+        var repository = new AlunoRepository(context);
 
         var aluno = new Aluno("José", "jose@virtus.org", new DateTime(1985, 5, 10));
-        await repo.AdicionarAsync(aluno);
+        await repository.AdicionarAsync(aluno);
 
         aluno.AtualizarDados("José Atualizado", "jose@virtus.org", aluno.DataNascimento);
-        await repo.AtualizarAsync(aluno);
+        await repository.AtualizarAsync(aluno);
 
-        var atualizado = await repo.ObterPorIdAsync(aluno.Id);
+        var atualizado = await repository.ObterPorIdAsync(aluno.Id);
         Assert.Equal("José Atualizado", atualizado!.Nome);
     }
 
@@ -55,13 +55,13 @@ public class AlunoRepositoryTests
     public async Task Deve_remover_aluno()
     {
         using var context = CriarDbContext();
-        var repo = new AlunoRepository(context);
+        var repository = new AlunoRepository(context);
 
         var aluno = new Aluno("Ana", "ana@virtus.org", new DateTime(2002, 3, 14));
-        await repo.AdicionarAsync(aluno);
+        await repository.AdicionarAsync(aluno);
 
-        await repo.RemoverAsync(aluno);
-        var resultado = await repo.ObterPorIdAsync(aluno.Id);
+        await repository.RemoverAsync(aluno);
+        var resultado = await repository.ObterPorIdAsync(aluno.Id);
 
         Assert.Null(resultado);
     }
