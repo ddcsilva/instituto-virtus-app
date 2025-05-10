@@ -29,6 +29,7 @@ public static class ServiceExtensions
     public static void ConfigurarDependencias(this IServiceCollection services)
     {
         services.AddScoped<CriarAlunoHandler>();
+        services.AddScoped<AtualizarAlunoHandler>();
         services.AddScoped<IAlunoRepository, AlunoRepository>();
     }
 

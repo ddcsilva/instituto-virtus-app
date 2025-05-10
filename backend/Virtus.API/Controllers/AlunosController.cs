@@ -62,4 +62,20 @@ public class AlunosController : ControllerBase
             return BadRequest(new { erros = ex.Message.Split("; ") });
         }
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> AtualizarAlunoAsync(Guid id, [FromBody] AtualizarAlunoCommand command)
+    {
+        try
+        {
+            var handler = HttpContext.RequestServices.GetRequiredService<AtualizarAlunoHandler>();
+            await handler.HandleAsync(id, command);
+            return NoContent();
+        }
+        catch (ApplicationException ex)
+        {
+            return BadRequest(new { erros = ex.Message.Split("; ") });
+        }
+    }
+
 }
