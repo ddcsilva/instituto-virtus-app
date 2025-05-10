@@ -13,17 +13,20 @@ public class AlunosController : ControllerBase
     private readonly CriarAlunoHandler _criarHandler;
     private readonly AtualizarAlunoHandler _atualizarHandler;
     private readonly CancelarMatriculaHandler _cancelarMatriculaHandler;
+    private readonly ReativarAlunoHandler _reativarAlunoHandler;
 
     public AlunosController(
         IAlunoRepository repository,
         CriarAlunoHandler criarHandler,
         AtualizarAlunoHandler atualizarHandler,
-        CancelarMatriculaHandler cancelarMatriculaHandler)
+        CancelarMatriculaHandler cancelarMatriculaHandler,
+        ReativarAlunoHandler reativarAlunoHandler)
     {
         _repository = repository;
         _criarHandler = criarHandler;
         _atualizarHandler = atualizarHandler;
         _cancelarMatriculaHandler = cancelarMatriculaHandler;
+        _reativarAlunoHandler = reativarAlunoHandler;
     }
 
     [HttpGet]
@@ -98,4 +101,19 @@ public class AlunosController : ControllerBase
             return NotFound(new { erro = ex.Message });
         }
     }
+
+    [HttpPut("{id}/reativar")]
+    public async Task<IActionResult> ReativarAlunoAsync(Guid id)
+    {
+        try
+        {
+            await _reativarAlunoHandler.HandleAsync(id);
+            return NoContent();
+        }
+        catch (ApplicationException ex)
+        {
+            return NotFound(new { erro = ex.Message });
+        }
+    }
+
 }
