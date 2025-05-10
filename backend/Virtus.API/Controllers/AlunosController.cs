@@ -10,12 +10,20 @@ namespace Virtus.API.Controllers;
 public class AlunosController : ControllerBase
 {
     private readonly IAlunoRepository _repository;
-    private readonly CriarAlunoHandler _handler;
+    private readonly CriarAlunoHandler _criarHandler;
+    private readonly AtualizarAlunoHandler _atualizarHandler;
+    private readonly CancelarMatriculaHandler _cancelarMatriculaHandler;
 
-    public AlunosController(CriarAlunoHandler handler, IAlunoRepository repository)
+    public AlunosController(
+        IAlunoRepository repository,
+        CriarAlunoHandler criarHandler,
+        AtualizarAlunoHandler atualizarHandler,
+        CancelarMatriculaHandler cancelarMatriculaHandler)
     {
-        _handler = handler;
         _repository = repository;
+        _criarHandler = criarHandler;
+        _atualizarHandler = atualizarHandler;
+        _cancelarMatriculaHandler = cancelarMatriculaHandler;
     }
 
     [HttpGet]
@@ -53,7 +61,7 @@ public class AlunosController : ControllerBase
     {
         try
         {
-            var id = await _handler.HandleAsync(command);
+            var id = await _criarHandler.HandleAsync(command);
 
             return CreatedAtRoute("ObterAlunoPorId", new { id }, new { id });
         }
@@ -68,8 +76,7 @@ public class AlunosController : ControllerBase
     {
         try
         {
-            var handler = HttpContext.RequestServices.GetRequiredService<AtualizarAlunoHandler>();
-            await handler.HandleAsync(id, command);
+            await _atualizarHandler.HandleAsync(id, command);
             return NoContent();
         }
         catch (ApplicationException ex)
@@ -78,4 +85,17 @@ public class AlunosController : ControllerBase
         }
     }
 
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> CancelarMatriculaAsync(Guid id)
+    {
+        try
+        {
+            await _cancelarMatriculaHandler.HandleAsync(id);
+            return NoContent();
+        }
+        catch (ApplicationException ex)
+        {
+            return NotFound(new { erro = ex.Message });
+        }
+    }
 }

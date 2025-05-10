@@ -30,6 +30,7 @@ public static class ServiceExtensions
     {
         services.AddScoped<CriarAlunoHandler>();
         services.AddScoped<AtualizarAlunoHandler>();
+        services.AddScoped<CancelarMatriculaHandler>();
         services.AddScoped<IAlunoRepository, AlunoRepository>();
     }
 
