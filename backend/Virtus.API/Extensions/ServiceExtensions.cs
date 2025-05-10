@@ -19,10 +19,11 @@ public static class ServiceExtensions
                 });
     }
 
-    public static void ConfigurarDbContext(this IServiceCollection services)
+    public static void ConfigurarDbContext(this IServiceCollection services, IConfiguration config)
     {
+        var conn = config.GetConnectionString("DefaultConnection");
         services.AddDbContext<VirtusDbContext>(options =>
-            options.UseSqlite("DefaultConnection"));
+            options.UseSqlite(conn));
     }
 
     public static void ConfigurarDependencias(this IServiceCollection services)
