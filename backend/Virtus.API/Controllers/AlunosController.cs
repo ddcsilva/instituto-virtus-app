@@ -18,6 +18,21 @@ public class AlunosController : ControllerBase
         _repository = repository;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> ListarAlunosAsync()
+    {
+        var alunos = await _repository.ListarTodosAsync();
+
+        var resultado = alunos.Select(a => new AlunoDTO
+        {
+            Id = a.Id,
+            Nome = a.Nome!,
+            Email = a.Email!
+        });
+
+        return Ok(resultado);
+    }
+
     [HttpGet("{id}", Name = "ObterAlunoPorId")]
     public async Task<IActionResult> ObterAlunoPorIdAsync(Guid id)
     {
